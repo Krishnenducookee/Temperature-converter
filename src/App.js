@@ -1,42 +1,49 @@
-import { useState } from 'react';
-import './App.css';
-import Page from './Page';
+import { useState } from "react";
+import Page from "./Page";
 
+function App({ label, onChange, value }) {
+  const [celsius, setcelsius] = useState(0);
+  const [farenheit, setfarenheit] = useState(32);
 
-
-function App({label,onChange,value}) {
-  const [temp, settemp] = useState(0);
-  const [updatetemp, setupdatetemp] = useState(32)
-
- const  changef = (temp) => {
-     setupdatetemp((temp * 9/5) + 32)
-    console.log(temp);
-
+  const changefarenheit = (celsius) => {
+    setcelsius(celsius);
+    setfarenheit((celsius * 9) / 5 + 32);
   };
 
-  const changec = updatetemp => {
-    settemp((updatetemp -32) * 5/9)
-    console.log(temp);
-
+  const changecelsius = (farenheit) => {
+    setfarenheit(farenheit);
+    setcelsius(((farenheit - 32) * 5) / 9);
   };
 
   return (
-    <div className='bg-slate-800' id='full'>
-      <h3>Temperature Converter</h3>
-      <center>
-        <div id="field_bg">
-     <div id='celsius'>
-      <Page label="Celsius" value={temp} onChange={(e)=>{settemp(e.target.value);
-      changef(e.target.value)}} />
-     </div>
-     <div id='farenheit'>
-      <Page label="Farenheit" value={updatetemp} onChange={(e)=>{setupdatetemp(e.target.value);
-      changec(e.target.value)}}  />
-     </div>
-     </div>
-     </center>
+    <div className="bg-slate-800 text-white h-screen ">
+      Temperature
+      <div className="mx-96 mt-10 flex space-x-4 border-2 border-purple-800 h-20">
+        <div>
+          <Page
+            label="Celsius"
+            value={celsius}
+            onChange={(e) => {
+              changefarenheit(e.target.value);
+            }}
+          />
+        </div>
+        <div className="pl-5 space-y-3">
+          <Page
+            label="Farenheit"
+            value={farenheit}
+            onChange={(e) => {
+              changecelsius(e.target.value);
+            }}
+          />
+        </div>
+      </div>
+      <div className="mx-96 mt-10">
+        {celsius} <sup>o</sup> C = {farenheit}
+        <sup>o</sup>F
+      </div>
     </div>
   );
-};
+}
 
 export default App;
