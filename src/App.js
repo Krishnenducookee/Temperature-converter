@@ -8,7 +8,7 @@ function App({ label, onChange, value, name }) {
     { name: "NewCelsius", label: "Celsius" },
     { name: "NewFarenheit", label: "Farenheit" },
   ];
-  const changeTemerature = (temperature) => {
+  const changeTemerature = (temperature,name) => {
     console.log(temperature);
     if (name == "NewCelsius") {
       // setTemperature(temperature);
@@ -35,7 +35,7 @@ function App({ label, onChange, value, name }) {
               value={Temperature}
               name={data.name}
               onChange={(e) => {
-                changeTemerature(e.target.value);
+                changeTemerature(e.target.value,e.target.name);
               }}
             />
           ))}
