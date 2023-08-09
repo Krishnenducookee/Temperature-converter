@@ -11,7 +11,7 @@ function App({ label, onChange, value, name }) {
     { name: "Farenheit", label: "Farenheit" },
   ];
   const changeTemerature = (e) => {
-    const name = e.taret.name;
+    const name = e.target.name;
     const value = e.target.value;
     setTemperature({ ...Temperature, [name]: value });
     if (name) {
